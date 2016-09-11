@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">HealthTracker</string>
+    <string name="underweight">Your BMI is Underweight, Please follow Proper diet and exercise for healthier lifestyle</string>
+    <string name="normal">Your BMI is Normal</string>
+    <string name="overweight">Your BMI is overweight, Please follow proper diet and exercise for healthier lifestyle </string>
+    <string name="obese">Your BMI is Obese, Please follow proper diet and exercise for healthier lifestyle </string>
+</resources>
