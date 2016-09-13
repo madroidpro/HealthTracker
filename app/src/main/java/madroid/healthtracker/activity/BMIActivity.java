@@ -5,6 +5,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.inmobi.ads.InMobiBanner;
+
 import madroid.healthtracker.R;
 import madroid.healthtracker.adapter.ViewPagerAdapter;
 import madroid.healthtracker.fragment.BMIImperialFragment;
@@ -20,6 +22,9 @@ public class BMIActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bmi);
         getSupportActionBar().setTitle("BMI Calculator");
+
+        InMobiBanner banner = (InMobiBanner)findViewById(R.id.banner);
+        banner.load();
     }
 
     @Override

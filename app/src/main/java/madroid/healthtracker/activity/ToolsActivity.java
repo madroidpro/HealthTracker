@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.inmobi.ads.InMobiBanner;
+import com.inmobi.sdk.InMobiSdk;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +21,7 @@ public class ToolsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tools);
         getSupportActionBar().hide();
+        InMobiSdk.init(getApplicationContext(), "263e7db887d14ab3b0c83553c24e8dd9"); //'this' is used specify context
     }
 
     @Override
@@ -36,6 +40,9 @@ public class ToolsActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(toolsListAdapter);
+
+        InMobiBanner banner = (InMobiBanner)findViewById(R.id.banner);
+        banner.load();
     }
 
     public class ListTitles{

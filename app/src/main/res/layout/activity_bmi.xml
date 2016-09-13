@@ -4,11 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.inmobi.ads"
     android:orientation="vertical"
-    tools:context=".activity.BMIActivity">
+    tools:context=".activity.BMIActivity"
+    android:weightSum="10">
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="40sp">
+        android:layout_height="0sp"
+        android:layout_weight="1">
         <android.support.design.widget.TabLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -23,9 +26,17 @@
     </android.support.design.widget.AppBarLayout>
     <android.support.v4.view.ViewPager
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0sp"
+        android:layout_weight="8"
         android:id="@+id/viewpager"
         android:fillViewport="false"
         android:nestedScrollingEnabled="false"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <include layout="@layout/inmob_layout"/>
+    </LinearLayout>
 
 </LinearLayout>
