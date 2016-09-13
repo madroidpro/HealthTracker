@@ -17,7 +17,7 @@ public class ToolsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tools);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().hide();
     }
 
     @Override

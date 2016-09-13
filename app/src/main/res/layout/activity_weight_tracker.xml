@@ -6,14 +6,27 @@
     android:orientation="vertical"
     tools:context=".activity.WeightTrackerActivity"
     android:weightSum="10">
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:hint="Set Reminder"
+        android:text="Remind me everyday"
+        android:checked="true"
+        android:id="@+id/reminder"
+        android:textSize="@dimen/activity_horizontal_margin"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.7"
+        android:layout_weight="0.5"
         android:text="Your weight graph"
         android:gravity="center"
         android:textColor="@color/ColorPrimaryText"
-        android:layout_marginTop="16sp"
         android:id="@+id/graphHead"
         android:textSize="16sp"/>
     <com.jjoe64.graphview.GraphView
@@ -32,7 +45,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.8"
+        android:layout_weight="0.9"
         android:text="Add Your Daily Weight Log"
         android:gravity="center"
         android:textColor="@color/ColorPrimaryText"
@@ -70,6 +83,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="Weight"
+            android:maxLength="3"
             android:id="@+id/weight"
             android:inputType="number"
             android:gravity="center"/>
