@@ -1,5 +1,6 @@
 package madroid.healthtracker.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -63,8 +65,13 @@ public class BMIImperialFragment extends Fragment {
                     double bmi_weight= Double.parseDouble(bmi_weight_edit.getText().toString());
                     double bmi_height= (Double.parseDouble(bmi_height_feet_edit.getText().toString())*12)+(Double.parseDouble(bmi_height_inch_edit.getText().toString()));
                     calculateBMI(bmi_weight,bmi_height);
-                    getActivity().getWindow().setSoftInputMode(
-                            WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+                    bmi_weight_edit.clearFocus();
+                    bmi_height_feet_edit.clearFocus();
+                    bmi_height_inch_edit.clearFocus();
+                    calculate.requestFocus();
+                    InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(
+                            Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(bmi_height_inch_edit.getWindowToken(), 0);
                 }
             }
         });

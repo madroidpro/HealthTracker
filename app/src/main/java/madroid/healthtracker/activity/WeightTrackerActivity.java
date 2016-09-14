@@ -9,17 +9,21 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.os.SystemClock;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.inmobi.ads.InMobiBanner;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
@@ -93,14 +97,14 @@ public class WeightTrackerActivity extends AppCompatActivity {
         calSet.set(Calendar.MINUTE, 15);
         calSet.set(Calendar.SECOND, 0);
         calSet.set(Calendar.MILLISECOND, 0);
-
+/*
         if(calSet.compareTo(calNow) <= 0){
             //Today Set time passed, count to tomorrow
             calSet.add(Calendar.DATE, 1);
-        }
+        }*/
         Log.d("info_date_open",calNow.getTime()+"");
         Log.d("info_date_set",calSet.getTime()+"");
-        mgr.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), calSet.getTimeInMillis(), pi);
+        mgr.setInexactRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(), calSet.getTimeInMillis(), pi);
     }
 
     private void plotGraph(){
@@ -164,7 +168,7 @@ public class WeightTrackerActivity extends AppCompatActivity {
                     formatter = new SimpleDateFormat("dd/MM/yyyy");
                     try {
                         Date  date = formatter.parse(datepicked.getText().toString());
-                        System.out.println(date.getTime());
+                       // System.out.println(date.getTime());
                         Calendar calendar = Calendar.getInstance();
                         calendar.setTimeInMillis(date.getTime());
                         System.out.println(calendar.getTime());
@@ -173,15 +177,21 @@ public class WeightTrackerActivity extends AppCompatActivity {
                         dbHelper.insertTableData(TABLE_NAME,weight_data);
                         datepicked.setText("");
                         weight.setText("");
-                        Toast.makeText(getApplicationContext(),"Data Saved",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(),"Weight log saved",Toast.LENGTH_LONG).show();
                         plotGraph();
                     }catch (Exception e){
                         Log.d("info_err",e+"");
                     }
+                    InputMethodManager imm = (InputMethodManager) getSystemService(
+                            Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(weight.getWindowToken(), 0);
                 }
             }
         });
         plotGraph();
+
+        InMobiBanner banner = (InMobiBanner)findViewById(R.id.banner);
+        banner.load();
     }
 
     public void showDatePickerDialog(View v) {
